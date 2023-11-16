@@ -1,9 +1,16 @@
 var express = require('express');
+const furniture_controllers= require('../controllers/furniture');
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('furniture', { title: 'Search Results Furniture' });
-});
+/* GET furniture */
+router.get('/', furniture_controllers.furniture_view_all_Page );
+/* GET detail costume page */
+router.get('/detail', furniture_controllers.furniture_view_one_Page);
+/* GET create furniture page */
+router.get('/create', furniture_controllers.furniture_create_Page);
+/* GET create update page */
+router.get('/update', furniture_controllers.furniture_update_Page);
+/* GET delete furniture page */
+router.get('/delete', furniture_controllers.furniture_delete_Page);
 
 module.exports = router;

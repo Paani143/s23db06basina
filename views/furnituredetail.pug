@@ -1,0 +1,20 @@
+extends layout
+block content
+    h1= title
+ 
+    - let furnitureid = toShow._id
+    - let furniture_name = toShow.furniture_name
+    - let furniture_specification = toShow.furniture_specification
+    - let furniture_cost = toShow.furniture_cost
+    div
+        div.row
+            div(class='furnitureAttr mr-3') Furniture Id is: #{furnitureid}
+            br
+        div.row
+            div(class='furnitureAttr mr-3') Furniture Name is: #{furniture_name}
+            br
+        div.row
+            div(class='furnitureAttr mr-3') Furniture Specification is: #{furniture_specification}
+            br
+        div.row
+            div(class='furnitureAttr mr-3') Furniture Cost is: #{furniture_cost}
