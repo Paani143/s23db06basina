@@ -1,34 +1,19 @@
 extends layout
-
+ 
 block content
   h1= title
   -
-    let results = [
-      {
-        "furniture_name" : "Chair",
-        "furniture_specification" : "Large",
-        "furniture_cost" : "50"
-      },
-      {
-        "furniture_name" : "Desk",
-        "furniture_specification" : "Medium",
-        "furniture_cost" : "250"
-      },
-      {
-        "furniture_name" : "Cabinet",
-        "furniture_specification" : "Small",
-        "furniture_cost" : "500"
-      },
-    ]
-  div(class="container-fluid") 
-    div(class="row")
-      each item,index in results 
-        div(class="col-sm-2", onclick=`buy(${index})`) Name: #{item.furniture_name}
-        div(class="col-sm-2", onclick=`buy(${index})`) Specification: #{item.furniture_specification}
-        div(class="col-sm-2", onclick=`buy(${index})`) Cost: #{item.furniture_cost}
+    let items  = results
+  div(class= "container-fluid")
+    div(class = "row m-1")
+      each item,index in items
+        - let destination = `dispatch(\"/resource/update?id=${item._id}\")`
+        div(class="row-sm-2", class="m-1") Item #{item.furniture_name}(#{item.furniture_specification}) is #{item.furniture_cost}
         br
         br
-  script. 
-    function buy(itemNum){
-      alert(`You purchased item ${itemNum+1}`)
-    }      
+        button.btn( class="btn-primary ml-1", onclick= destination) Update
+       
+  script.
+    function dispatch(path){
+      window.location.href=path
+    }
