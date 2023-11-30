@@ -9,6 +9,6 @@ a {
 
 .furnitureAttr {
   box-shadow: black;
-  background-color: red;
-  width:fit-content;
+  background-color:rgb(70, 153, 216);
+  width: 300px;
   }

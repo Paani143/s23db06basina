@@ -2,18 +2,35 @@ extends layout
  
 block content
   h1= title
-  -
-    let items  = results
-  div(class= "container-fluid")
-    div(class = "row m-1")
-      each item,index in items
-        - let destination = `dispatch(\"/Furniture/update?id=${item._id}\")`
-        div(class="row-sm-2", class="m-1") Item #{item.furniture_name}(#{item.furniture_specification}) is #{item.furniture_cost}
+ 
+  -let items = results
+  a(class="btn btn-dark" href="/Furniture/create") Create
+  br
+  br
+  .container-fluid
+      for result, index in results
+        - let destination = `dispatch("/Furniture/update?id=${result._id}")`
+        .col-m-2(onclick=`buy(${index})`)
+          div
+            div.row
+              div(class='furnitureAttr mr-3') Furniture ID is: #{result._id}
+            div.row
+              div(class='furnitureAttr mr-3') Furniture Name is: #{result.furniture_name}
+            div.row
+              div(class='furnitureAttr mr-3') Furniture Specification is: #{result.furniture_specification}
+            div.row
+              div(class='furnitureAttr mr-3') Furniture Cost is: #{result.furniture_cost}
+            br
+        button.btn(class="btn btn-primary", onclick= destination) Update
+        a(class="btn btn-danger" href=`/Furniture/delete?id=${result._id}`) Delete
+        a(class="btn btn-success" href=`/Furniture/detail?id=${result._id}`) Details
         br
-        br
-        button.btn( class="btn-primary ml-1", onclick= destination) Update
-       
+        br 
+ 
   script.
-    function dispatch(path){
-      window.location.href=path
+    function buy(index) {
+      alert(`You purchased item ${index + 1}`);
+    }
+    function dispatch(path) {
+      window.location.href = path;
     }
