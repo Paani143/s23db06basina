@@ -1,25 +1,11 @@
 extends layout
-
 block content
-  h1= title
-  p Hi everyone. I am Pinakapaani Basina. You can call me paani. Be happy.
-  button(class="btn btn-success" onclick="goFaster()")  press me
-  br
-  br
-  div(id="faster") <i>Increase the speed.</i>
-  br
-  br
-  a(href="furniture") Link to Search page 
-  script. 
-    var mph = 20;
-    var change = 1;
-    function goFaster()
-    {
-      mph = mph + change;
-      change = change + 1;
-      var result = document.getElementById("faster");
-      result.innerHTML = `MPH ${mph} with change ${change}`
-    }
-
-  br
-  
+  if (!user)
+    a(href="/login") Login
+    br
+    a(href="/register") Register
+  if (user)
+    p You are currently logged in as #{user.username}
+    a(href="/furniture") Take me to Furniture
+    br
+    a(href="/logout") Logout
